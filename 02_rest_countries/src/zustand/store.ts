@@ -19,5 +19,10 @@ export const useCountryStore = create<CountryStore>((set) => ({
       });
     }
   },
-  toggleTheme: () => set((state) => ({ isDark: !state.isDark })),
+  toggleTheme: () => set((state) => {
+    const newTheme = state.isDark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    return { isDark: !state.isDark };
+  })
+  
 }));
