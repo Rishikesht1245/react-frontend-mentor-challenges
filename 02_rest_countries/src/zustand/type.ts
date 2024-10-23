@@ -20,10 +20,12 @@ export type Country = {
 };
 
 export type CountryStore = {
+  isDark : boolean;
   isLoading: boolean;
   error: string;
   countries: Country[];
   loadCountries: () => Promise<void>;
+  toggleTheme : () => void;
 };
 
 // these are the type we need to use in the set fucntion of zustand store. (these are the arguments which we can pass and return types)
