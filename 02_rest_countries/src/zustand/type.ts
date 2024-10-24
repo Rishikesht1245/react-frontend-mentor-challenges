@@ -24,8 +24,11 @@ export type CountryStore = {
   isLoading: boolean;
   error: string;
   countries: Country[];
+  filteredCountries : Country[],
   loadCountries: () => Promise<void>;
   toggleTheme : () => void;
+  handleSearchFilter : (searchBy : string, filterBy: string) => void;
+  // handleFilter : (by : string) => void;
 };
 
 // these are the type we need to use in the set fucntion of zustand store. (these are the arguments which we can pass and return types)
