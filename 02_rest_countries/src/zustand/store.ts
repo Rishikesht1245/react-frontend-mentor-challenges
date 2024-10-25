@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Country, CountryStore, fetchCountries } from "./index";
+import { Country, CountryStore, fetchCountries, fetchCountryByCode } from "./index";
 
 // create() initializes the store
 export const useCountryStore = create<CountryStore>((set) => ({
@@ -7,6 +7,7 @@ export const useCountryStore = create<CountryStore>((set) => ({
   isLoading: false,
   error: "",
   countries: [],
+  activeCountry : null,
   filteredCountries: [],
 
   loadCountries: async () => {
@@ -35,21 +36,45 @@ export const useCountryStore = create<CountryStore>((set) => ({
     set((state) => {
       const { countries } = state;
 
+      state.isLoading = true;
+
       let filteredCountries: Country[] = [];
 
-      if (searchBy)
-        filteredCountries = countries?.filter((country) =>
-          country?.name?.common?.includes(searchBy)
-        );
-
       if (filterBy) {
-        const dataToFilter: Country[] =
-          filteredCountries?.length > 0 ? filteredCountries : countries;
-        filteredCountries = dataToFilter?.filter(country => (
+        filteredCountries = countries?.filter(country => (
           country?.region === filterBy
         ));
+      }else {
+        filteredCountries = filteredCountries?.length ? filteredCountries : countries;
       }
 
-      return { ...state, filteredCountries };
+      if (searchBy){
+        filteredCountries = filteredCountries?.filter(country => (
+          country?.name?.common?.toLowerCase()?.includes(searchBy?.toLowerCase())
+        ));
+
+      }
+
+      // show full list incase both searchBy and filter is empty
+      if(!searchBy && !filterBy){
+        filteredCountries = state.countries;
+      }
+
+      return { ...state, filteredCountries, isLoading : false };
     }),
+
+    setActiveCountry : (country : Country) => set({activeCountry : country}),
+
+    setActiveCountryByCode: async (code : string) => {
+      set({ isLoading: true, error: "" });
+      try {
+        const country = await fetchCountryByCode(code);
+        set({ activeCountry: country, isLoading: false });
+      } catch (error: any) {
+        set({
+          error: error.message || "Failed to fetch countries",
+          isLoading: false,
+        });
+      }
+    },
 }));

@@ -8,7 +8,6 @@ interface HeaderProps {
 const Header = ({ title }: HeaderProps) => {
   const { isDark, toggleTheme } = useCountryStore();
 
-  console.log({ isDark });
   return (
     <div className="header-container flex-center">
       <div className="header-content flex-between">

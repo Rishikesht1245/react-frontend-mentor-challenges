@@ -16,7 +16,19 @@ export type Country = {
   };
   capital: string[];
   region: string;
+  subregion : string;
   population: number;
+  currencies :{
+    [currencyCode : string] : {
+      name : string;
+      symbol : string;
+    }
+  };
+  languages : {
+    [language : string] : string;
+  };
+  borders : string[];
+  timezones : string[];
 };
 
 export type CountryStore = {
@@ -24,9 +36,12 @@ export type CountryStore = {
   isLoading: boolean;
   error: string;
   countries: Country[];
+  activeCountry : Country | null,
   filteredCountries : Country[],
   loadCountries: () => Promise<void>;
+  setActiveCountryByCode: (code : string) => Promise<void>;
   toggleTheme : () => void;
+  setActiveCountry : (country : Country) => void;
   handleSearchFilter : (searchBy : string, filterBy: string) => void;
   // handleFilter : (by : string) => void;
 };

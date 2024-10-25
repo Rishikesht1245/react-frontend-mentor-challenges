@@ -19,12 +19,16 @@ const Home = () => {
       {isLoading && <Loader/>}
       {error && <span>{error}</span>}
 
-      {!isLoading && !error && (
-        <div className="card-container gap-50">
+      {filteredCountries?.length  > 0 && (
+        <div className="card-container gap-50 mb-10">
           {filteredCountries?.map((country: Country) => (
             <CountryCard country={country} key={country?.name?.common} />
           ))}
         </div>
+      )}
+
+      {!isLoading && !filteredCountries?.length &&  (
+        <span className="w-100 h-100 flex-center fs-16">No Countries Found.</span>
       )}
     </div>
   );

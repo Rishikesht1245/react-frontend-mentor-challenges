@@ -1,13 +1,23 @@
-import React from "react";
-import { Country } from "../zustand";
+import { Country, useCountryStore } from "../zustand";
+import { useNavigate } from "react-router-dom";
 
 interface CountryCardProps {
   country: Country;
 }
 
 const CountryCard = ({ country }: CountryCardProps) => {
+
+  const {setActiveCountry} = useCountryStore();
+
+  const navigate = useNavigate()
+
+  const handleCardClick = () => {
+      setActiveCountry(country);
+      navigate("/details");
+  }
+
   return (
-    <div className="card">
+    <div className="card" onClick={handleCardClick}>
       <div className="flex-col-center">
         <img
           className="card-img"
