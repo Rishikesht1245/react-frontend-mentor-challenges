@@ -322,6 +322,7 @@
     & img{
       max-width: 700px;
       width: 100%;
+      max-height: 500px;
       height: auto;
       object-fit: cover;
     }
@@ -333,6 +334,7 @@
     & .country-box{
       width: auto;
       height: auto;
+      color: gray;
       padding: 5px 10px;
       cursor: pointer;
     }
