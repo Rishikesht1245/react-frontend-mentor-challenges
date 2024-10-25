@@ -7,7 +7,7 @@ const Details = () => {
   const { activeCountry , setActiveCountryByCode} = useCountryStore();
 
   return (
-    <div className="main-container">
+    <div className="main-container mb-10">
       <Header title="Where in the world?" />
 
       <div className="flex-col-center details-container">
@@ -17,7 +17,7 @@ const Details = () => {
         </Link>
 
         {activeCountry && (
-          <div className="country-details flex-between">
+          <div className="country-details flex-between flex-wrap">
             <img
               src={activeCountry?.flags?.svg}
               alt={activeCountry?.flags?.alt}

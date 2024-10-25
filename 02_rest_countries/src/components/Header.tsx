@@ -19,11 +19,11 @@ const Header = ({ title }: HeaderProps) => {
         >
           {isDark ? (
             <>
-              <MdOutlineLightMode size={24} /> Light Mode
+              <MdOutlineLightMode size={24} /><span className="sm-hide">Light Mode</span>
             </>
           ) : (
             <>
-              <MdDarkMode size={24} /> Dark Mode
+              <MdDarkMode size={24} /><span className="sm-hide">Dark Mode</span> 
             </>
           )}
         </button>
