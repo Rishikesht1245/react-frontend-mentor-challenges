@@ -1,0 +1,8 @@
+{
+    "name": "react-frontend-mentor-challenges",
+    "version": "1.0.0",
+    "scripts": {
+      "build:project1": "cd 01_kanban_dashboard && npm install && npm run build",
+      "build:project2": "cd 02_rest_countries && npm install && npm run build"
+    }
+  }

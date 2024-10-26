@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Header from "../components/Header";
 import SearchFilter from "../components/SearchFilter";
 import CountryCard from "../components/CountryCard";
