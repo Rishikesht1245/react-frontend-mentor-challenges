@@ -7,7 +7,7 @@ const Details = () => {
   const { activeCountry , setActiveCountryByCode} = useCountryStore();
 
   return (
-    <div className="main-container mb-10">
+    <div className="main-container">
       <Header title="Where in the world?" />
 
       <div className="flex-col-center details-container">
@@ -76,7 +76,7 @@ const Details = () => {
                   >
                     <small>{border}</small>
                   </span>
-                )) :<small>No Borders found for this country</small>}
+                )) :<small className="fs-14">No Borders found for this country</small>}
               </div>
             </div>
           </div>

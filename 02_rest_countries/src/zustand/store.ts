@@ -3,7 +3,7 @@ import { Country, CountryStore, fetchCountries, fetchCountryByCode } from "./ind
 
 // create() initializes the store
 export const useCountryStore = create<CountryStore>((set) => ({
-  isDark: false,
+  isDark: localStorage.getItem("theme") === "dark" ? true : false,
   isLoading: false,
   error: "",
   countries: [],
@@ -27,6 +27,7 @@ export const useCountryStore = create<CountryStore>((set) => ({
     set((state) => {
       const newTheme = state.isDark ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme)
       return { isDark: !state.isDark };
     }),
 

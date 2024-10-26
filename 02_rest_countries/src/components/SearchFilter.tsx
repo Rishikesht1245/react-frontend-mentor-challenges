@@ -54,7 +54,6 @@ const SearchFilter = () => {
             className="fs-16"
             name="filter"
             value={filterValue}
-            defaultValue={"Region"}
             onChange={(e) => handleChange(e?.target?.value, 'filter')}
           >
             <option value="">Filter by Region</option>
